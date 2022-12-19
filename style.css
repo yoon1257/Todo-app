@@ -1,0 +1,46 @@
+body {
+  background-image: url(./images/images.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.entire-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.container {
+  background-color: white;
+  margin: 20px;
+  height: 100vh;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+h1 {
+  margin: 10px;
+  text-align: center;
+  color: cornflowerblue;
+  font-family: sans-serif;
+  font-weight: 900;
+}
+.tabs-area {
+  display: flex;
+  border: 2px solid lightgray;
+  margin-top: 10px;
+}
+.tabs-area div {
+  margin: 1em;
+}
+.task-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+.under-line {
+  position: absolute;
+  border: 2px solid cornflowerblue;
+  top: 157px;
+  width: 50px;
+  left: 110px;
+}
