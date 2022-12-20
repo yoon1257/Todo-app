@@ -17,8 +17,12 @@
       <div class="container">
         <h1>Todo APP</h1>
         <div>
-          <input type="text" placeholder="할일을 입력해주세요" />
-          <button>+</button>
+          <input
+            type="text"
+            placeholder="할일을 입력해주세요"
+            id="input-area"
+          />
+          <button id="add-button">+</button>
         </div>
         <div>
           <section class="tabs-area">
@@ -27,13 +31,7 @@
             <div>NOT DONE</div>
             <div>DONE</div>
           </section>
-          <section class="task-area">
-            <div>집가기</div>
-            <div>
-              <button>check</button>
-              <button>Delete</button>
-            </div>
-          </section>
+          <section id="task-board"></section>
         </div>
       </div>
     </div>
