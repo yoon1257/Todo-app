@@ -10,9 +10,43 @@
 
 let inputTask = document.getElementById("input-area");
 let addButton = document.getElementById("add-button");
+let tabs = document.querySelectorAll(".tabs-area div");
+let mode = "all";
 let taskList = [];
+let filterList = [];
 addButton.addEventListener("click", onAdd);
+inputTask.addEventListener("focus", function () {
+  inputTask.value = "";
+});
 
+for (let i = 1; i < tabs.length; i++) {
+  tabs[i].addEventListener("click", function (e) {
+    filter(e);
+  });
+}
+
+function filter(e) {
+  mode = e.target.id;
+  filterList = [];
+  if (mode == "all") {
+    render();
+  } else if (mode == "not-done") {
+    // 새로운 배열에 담아주세요
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].isComplete == false) {
+        filterList.push(taskList[i]);
+      }
+    }
+    render();
+  } else if (mode == "done") {
+    for (let i = 0; i < taskList.length; i++) {
+      if (taskList[i].isComplete == true) {
+        filterList.push(taskList[i]);
+      }
+    }
+    render();
+  }
+}
 function onAdd() {
   let task = {
     id: randomId(),
@@ -29,22 +63,28 @@ function randomId() {
 }
 function render() {
   let resultHTML = "";
+  let list = [];
 
-  for (let i = 0; i < taskList.length; i++) {
-    if (taskList[i].isComplete == true) {
+  if (mode == "all") {
+    list = taskList;
+  } else if (mode == "not-done" || mode == "done") {
+    list = filterList;
+  }
+  for (let i = 0; i < list.length; i++) {
+    if (list[i].isComplete == true) {
       resultHTML += `<div class="task-area">
-    <div class="task-done">${taskList[i].taskContent}</div>
+    <div class="task-done">${list[i].taskContent}</div>
     <div>
-      <button  class="check-button" onClick = "onComplete('${taskList[i].id}')"><i class="fa-solid fa-rotate-left"></i></button>
-      <button class="trash-button" onClick = "onDelete('${taskList[i].id}')"><i class="fa-solid fa-trash"></i></button>
+      <button  class="check-button" onClick = "onComplete('${list[i].id}')"><i class="fa-solid fa-rotate-left"></i></button>
+      <button class="trash-button" onClick = "onDelete('${list[i].id}')"><i class="fa-solid fa-trash"></i></button>
     </div>
   </div>`;
     } else {
       resultHTML += `<div class="task-area">
-    <div>${taskList[i].taskContent}</div>
+    <div>${list[i].taskContent}</div>
     <div>
-      <button class="check-button" onClick = "onComplete('${taskList[i].id}')"><i class="fa-solid fa-check"></i></button>
-      <button class="trash-button" onClick = "onDelete('${taskList[i].id}')"><i class="fa-solid fa-trash"></i></button>
+      <button class="check-button" onClick = "onComplete('${list[i].id}')"><i class="fa-solid fa-check"></i></button>
+      <button class="trash-button" onClick = "onDelete('${list[i].id}')"><i class="fa-solid fa-trash"></i></button>
     </div>
   </div>`;
     }
@@ -52,6 +92,7 @@ function render() {
   document.getElementById("task-board").innerHTML = resultHTML;
 }
 
+//완료하기
 function onComplete(id) {
   for (let i = 0; i < taskList.length; i++) {
     if (taskList[i].id == id) {
@@ -62,6 +103,7 @@ function onComplete(id) {
   render();
 }
 
+//삭제하기
 function onDelete(id) {
   for (let i = 0; i < taskList.length; i++) {
     if (taskList[i].id == id) {

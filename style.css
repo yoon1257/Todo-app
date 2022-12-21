@@ -30,6 +30,7 @@ h1 {
 }
 .tabs-area div {
   margin: 1em;
+  cursor: pointer;
 }
 .task-area {
   display: flex;
