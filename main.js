@@ -44,7 +44,7 @@ function render() {
     <div>${taskList[i].taskContent}</div>
     <div>
       <button class="check-button" onClick = "onComplete('${taskList[i].id}')"><i class="fa-solid fa-check"></i></button>
-      <button class="trash-button"><i class="fa-solid fa-trash"></i></button>
+      <button class="trash-button" onClick = "onDelete('${taskList[i].id}')"><i class="fa-solid fa-trash"></i></button>
     </div>
   </div>`;
     }
@@ -60,5 +60,14 @@ function onComplete(id) {
     }
   }
   render();
-  console.log(taskList);
+}
+
+function onDelete(id) {
+  for (let i = 0; i < taskList.length; i++) {
+    if (taskList[i].id == id) {
+      taskList.splice(i, 1); //i번째 있는 아이템을 하나만 삭제하라
+      break;
+    }
+  }
+  render();
 }
