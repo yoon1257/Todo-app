@@ -10,7 +10,7 @@ body {
 .container {
   background-color: white;
   margin: 20px;
-  height: 100vh;
+  min-height: 100vh;
   border-radius: 20px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
@@ -34,6 +34,7 @@ h1 {
 .task-area {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 10px;
   padding: 10px;
   border-bottom: 1px solid lightgray;
@@ -44,4 +45,30 @@ h1 {
   top: 40px;
   width: 50px;
   left: -10px;
+}
+.task-done {
+  text-decoration: line-through;
+  padding: 5px;
+  background-color: lightblue;
+  width: 80%;
+}
+.check-button {
+  background-color: transparent;
+  color: green;
+  border: 1px solid gray;
+  padding: 5px 10px 5px 10px;
+}
+.check-button:hover {
+  background-color: green;
+  color: white;
+}
+.trash-button {
+  background-color: transparent;
+  color: red;
+  border: 1px solid gray;
+  padding: 5px 10px 5px 10px;
+}
+.trash-button:hover {
+  background-color: red;
+  color: white;
 }
